@@ -1,0 +1,38 @@
+
+#datasource
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_shiro?characterEncoding=UTF-8
+    username: root
+    password: root
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+  jpa:
+    show-sql: true
+    show-format: true
+    hibernate:
+        ddl-auto: update
+  messages:
+    basename: i18n/messages
+#shiro
+shiro:
+  filterChainDefinitionMap:
+    /login:  anon 
+    /validata: anon
+    /403:  anon
+    /error:  anon
+    /home/test:  anon
+    /static/**:  anon
+    /home/**: authc
+    /goods/list: perms[goods_list]
+    /goods/**: roles[buyer]
+    /**: authc
+  loginUrl:  /login
+  successUrl: /index
+  unauthorizedUrl:  /403

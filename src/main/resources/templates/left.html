@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<ul class="nav nav-pills nav-stacked" style="width: 150px;">
+		<li class="active"><a href="/home/right">首页</a></li>
+		<shiro:hasPermission name="goods_list">
+			<li><a href="/goods/list" target="rightFrame">商品信息列表</a></li>
+		</shiro:hasPermission>
+		<shiro:hasRole name="buyer">
+			<li><a href="/goods/add" target="rightFrame">添加商品信息</a></li>
+			<li><a href="/goods/delete" target="rightFrame">删除商品信息</a></li>
+		</shiro:hasRole>
+	</ul>
+</body>
+</html>
